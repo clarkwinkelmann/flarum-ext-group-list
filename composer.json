@@ -1,0 +1,37 @@
+{
+    "name": "clarkwinkelmann/flarum-ext-group-list",
+    "description": "List select groups and their members",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": ">=0.1.0-beta.14 <0.1.0-beta.15"
+    },
+    "authors": [
+        {
+            "name": "Clark Winkelmann",
+            "email": "clark.winkelmann@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ClarkWinkelmann\\GroupList\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Group List",
+            "icon": {
+                "name": "fas fa-users",
+                "backgroundColor": "#684ba6",
+                "color": "#fff"
+            }
+        },
+        "flagrow": {
+            "discuss": "https://discuss.flarum.org/d/25386"
+        }
+    }
+}
