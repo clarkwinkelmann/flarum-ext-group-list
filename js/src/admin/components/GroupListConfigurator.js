@@ -1,6 +1,7 @@
 import app from 'flarum/app';
+import Button from 'flarum/components/Button';
+import Dropdown from 'flarum/components/Dropdown';
 import LoadingIndicator from 'flarum/components/LoadingIndicator';
-import Select from 'flarum/components/Select';
 import Group from 'flarum/models/Group';
 import icon from 'flarum/helpers/icon';
 
@@ -22,27 +23,9 @@ export default class SelectFieldOptionEditor {
     }
 
     view() {
-        const groupOptions = {
-            '': app.translator.trans(translationPrefix + 'add'),
-        };
-
         const existingGroups = this.items === null ? [] : this.items.map(item => item.group().id());
 
-        app.store.all('groups')
-            .filter(group => {
-                if (group.id() === Group.MEMBER_ID || group.id() === Group.GUEST_ID) {
-                    // Do not suggest "virtual" groups
-                    return false;
-                }
-
-                // Do not suggest groups already in use
-                return existingGroups.indexOf(group.id()) === -1;
-            })
-            .forEach(group => {
-                groupOptions[group.id()] = group.namePlural();
-            });
-
-        return m('table', m('tbody', [
+        return m('table.GroupListTable', m('tbody', [
             this.items === null ? m('tr', m('td', LoadingIndicator.component())) : this.items.map((item, index) => m('tr', [
                 m('td', item.group().namePlural()),
                 m('td', m('textarea.FormControl', {
@@ -77,27 +60,40 @@ export default class SelectFieldOptionEditor {
                     },
                 }, icon('fas fa-times'))),
             ])),
-            m('tr', m('td', Select.component({
-                options: groupOptions,
-                value: '',
-                onchange: value => {
-                    app.request({
-                        method: 'POST',
-                        url: app.forum.attribute('apiUrl') + '/clarkwinkelmann-group-list-items',
-                        body: {
-                            data: {
-                                attributes: {
-                                    groupId: value,
-                                    order: this.items.length,
+            m('tr', m('td', {
+                colspan: 5,
+            }, Dropdown.component({
+                label: app.translator.trans(translationPrefix + 'add'),
+                buttonClassName: 'Button',
+            }, app.store.all('groups')
+                .filter(group => {
+                    if (group.id() === Group.MEMBER_ID || group.id() === Group.GUEST_ID) {
+                        // Do not suggest "virtual" groups
+                        return false;
+                    }
+
+                    // Do not suggest groups already in use
+                    return existingGroups.indexOf(group.id()) === -1;
+                })
+                .map(group => Button.component({
+                    onclick: () => {
+                        app.request({
+                            method: 'POST',
+                            url: app.forum.attribute('apiUrl') + '/clarkwinkelmann-group-list-items',
+                            body: {
+                                data: {
+                                    attributes: {
+                                        groupId: group.id(),
+                                        order: this.items.length,
+                                    },
                                 },
                             },
-                        },
-                    }).then(response => {
-                        this.items.push(app.store.pushPayload(response));
-                        m.redraw();
-                    });
-                },
-            }))),
+                        }).then(response => {
+                            this.items.push(app.store.pushPayload(response));
+                            m.redraw();
+                        });
+                    },
+                }, group.namePlural()))))),
         ]));
     }
 

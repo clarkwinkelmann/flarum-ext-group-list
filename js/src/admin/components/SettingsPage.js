@@ -1,5 +1,5 @@
 import app from 'flarum/app';
-import BaseSettingsModal from 'flarum/components/SettingsModal';
+import ExtensionPage from 'flarum/components/ExtensionPage';
 import Switch from 'flarum/components/Switch';
 import GroupListConfigurator from './GroupListConfigurator';
 
@@ -8,13 +8,9 @@ import GroupListConfigurator from './GroupListConfigurator';
 const settingsPrefix = 'clarkwinkelmann-group-list.';
 const translationPrefix = 'clarkwinkelmann-group-list.admin.settings.';
 
-export default class SettingsModal extends BaseSettingsModal {
-    title() {
-        return app.translator.trans(translationPrefix + 'title');
-    }
-
-    form() {
-        return [
+export default class SettingsPage extends ExtensionPage {
+    content() {
+        return m('.ExtensionPage-settings', m('.container', [
             m('.Form-group', m(GroupListConfigurator)),
             m('.Form-group', [
                 Switch.component({
@@ -40,6 +36,7 @@ export default class SettingsModal extends BaseSettingsModal {
                     },
                 }, app.translator.trans(translationPrefix + 'showOnlineStatus')),
             ]),
-        ];
+            m('.Form-group', this.submitButton()),
+        ]));
     }
 }

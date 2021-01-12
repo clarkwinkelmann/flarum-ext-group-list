@@ -1,5 +1,5 @@
 {
-    "name": "@clarkwinkelmann/flarum-ext-group-list",
+    "name": "@clarkwinkelmann/group-list",
     "version": "0.0.0",
     "private": true,
     "dependencies": {

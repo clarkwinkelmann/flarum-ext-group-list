@@ -24,6 +24,8 @@ You can [contact me](https://clarkwinkelmann.com/flarum) to sponsor additional f
 
 Support is offered on a "best effort" basis through the Flarum community thread.
 
+**Sponsors**: [Andrew MacLean](https://andrewdmaclean.com/)
+
 ## Links
 
 - [GitHub](https://github.com/clarkwinkelmann/flarum-ext-group-list)
