@@ -4,8 +4,8 @@ namespace ClarkWinkelmann\GroupList\Serializers;
 
 use ClarkWinkelmann\GroupList\GroupListItem;
 use Flarum\Api\Serializer\AbstractSerializer;
-use Flarum\Api\Serializer\BasicUserSerializer;
 use Flarum\Api\Serializer\GroupSerializer;
+use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Formatter\Formatter;
 
 class GroupListItemSerializer extends AbstractSerializer
@@ -43,6 +43,6 @@ class GroupListItemSerializer extends AbstractSerializer
 
     public function members($item)
     {
-        return $this->hasMany($item, BasicUserSerializer::class);
+        return $this->hasMany($item, UserSerializer::class);
     }
 }
