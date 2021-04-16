@@ -35,7 +35,7 @@ class ItemUpdateController extends AbstractShowController
             /**
              * @var $formatter Formatter
              */
-            $formatter = app(Formatter::class);
+            $formatter = resolve(Formatter::class);
 
             $item->content = $formatter->parse(Arr::get($attributes, 'content'));
         }

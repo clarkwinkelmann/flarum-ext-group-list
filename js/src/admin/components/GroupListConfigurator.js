@@ -1,11 +1,10 @@
-import app from 'flarum/app';
-import Button from 'flarum/components/Button';
-import Dropdown from 'flarum/components/Dropdown';
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
-import Group from 'flarum/models/Group';
-import icon from 'flarum/helpers/icon';
+import Button from 'flarum/common/components/Button';
+import Dropdown from 'flarum/common/components/Dropdown';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import Group from 'flarum/common/models/Group';
+import icon from 'flarum/common/helpers/icon';
 
-/* global m */
+/* global app, m */
 
 const translationPrefix = 'clarkwinkelmann-group-list.admin.items.';
 

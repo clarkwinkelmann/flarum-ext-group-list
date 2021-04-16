@@ -1,6 +1,7 @@
-import app from 'flarum/app';
 import SettingsPage from './components/SettingsPage';
 import GroupListItem from '../common/models/GroupListItem';
+
+/* global app */
 
 app.initializers.add('clarkwinkelmann-group-list', () => {
     app.store.models['clarkwinkelmann-group-list-items'] = GroupListItem;

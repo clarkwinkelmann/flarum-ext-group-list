@@ -21,11 +21,11 @@ return [
         ->patch('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list', Controllers\ItemUpdateController::class)
         ->delete('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list', Controllers\ItemDeleteController::class),
     (new Extend\ApiSerializer(ForumSerializer::class))
-        ->mutate(function (ForumSerializer $serializer) {
+        ->attributes(function (ForumSerializer $serializer): array {
             /**
              * @var $settings SettingsRepositoryInterface
              */
-            $settings = app(SettingsRepositoryInterface::class);
+            $settings = resolve(SettingsRepositoryInterface::class);
 
             return [
                 'clarkwinkelmann-group-list.showSideNavLink' => $settings->get('clarkwinkelmann-group-list.showSideNavLink') !== '0' && $serializer->getActor()->hasPermission('clarkwinkelmann-group-list.see'),

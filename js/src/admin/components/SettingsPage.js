@@ -1,9 +1,8 @@
-import app from 'flarum/app';
-import ExtensionPage from 'flarum/components/ExtensionPage';
-import Switch from 'flarum/components/Switch';
+import ExtensionPage from 'flarum/admin/components/ExtensionPage';
+import Switch from 'flarum/common/components/Switch';
 import GroupListConfigurator from './GroupListConfigurator';
 
-/* global m */
+/* global app, m */
 
 const settingsPrefix = 'clarkwinkelmann-group-list.';
 const translationPrefix = 'clarkwinkelmann-group-list.admin.settings.';

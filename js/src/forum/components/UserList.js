@@ -1,11 +1,10 @@
-import app from 'flarum/app';
-import Link from 'flarum/components/Link';
-import avatar from 'flarum/helpers/avatar';
-import listItems from 'flarum/helpers/listItems';
-import username from 'flarum/helpers/username';
-import userOnline from 'flarum/helpers/userOnline';
+import Link from 'flarum/common/components/Link';
+import avatar from 'flarum/common/helpers/avatar';
+import listItems from 'flarum/common/helpers/listItems';
+import username from 'flarum/common/helpers/username';
+import userOnline from 'flarum/common/helpers/userOnline';
 
-/* global m, $ */
+/* global app, m, $ */
 
 export default class UserList {
     view(vnode) {

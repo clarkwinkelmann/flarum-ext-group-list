@@ -1,9 +1,10 @@
-import {extend} from 'flarum/extend';
-import app from 'flarum/app';
-import IndexPage from 'flarum/components/IndexPage';
-import LinkButton from 'flarum/components/LinkButton';
+import {extend} from 'flarum/common/extend';
+import IndexPage from 'flarum/forum/components/IndexPage';
+import LinkButton from 'flarum/common/components/LinkButton';
 import GroupListPage from './components/GroupListPage';
 import GroupListItem from '../common/models/GroupListItem';
+
+/* global app */
 
 app.initializers.add('clarkwinkelmann-group-list', () => {
     app.routes['clarkwinkelmann-group-list'] = {

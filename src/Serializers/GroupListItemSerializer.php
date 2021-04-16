@@ -27,7 +27,7 @@ class GroupListItemSerializer extends AbstractSerializer
             /**
              * @var $formatter Formatter
              */
-            $formatter = app(Formatter::class);
+            $formatter = resolve(Formatter::class);
 
             $attributes['content'] = $formatter->unparse($item->content);
             $attributes['contentHtml'] = $formatter->render($item->content);
