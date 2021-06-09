@@ -6,6 +6,7 @@ use ClarkWinkelmann\GroupList\GroupListItem;
 use ClarkWinkelmann\GroupList\Serializers\GroupListItemSerializer;
 use Flarum\Api\Controller\AbstractCreateController;
 use Flarum\Group\Group;
+use Flarum\Http\RequestUtil;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -20,7 +21,7 @@ class ItemStoreController extends AbstractCreateController
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $request->getAttribute('actor')->assertAdmin();
+        RequestUtil::getActor($request)->assertAdmin();
 
         $group = Group::query()->findOrFail(Arr::get($request->getParsedBody(), 'data.attributes.groupId'));
 

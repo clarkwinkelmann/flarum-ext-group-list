@@ -16,10 +16,10 @@ return [
         ->css(__DIR__ . '/resources/less/admin.less'),
     new Extend\Locales(__DIR__ . '/resources/locale'),
     (new Extend\Routes('api'))
-        ->get('/clarkwinkelmann-group-list', 'clarkwinkelmann-group-list', Controllers\GroupListController::class)
-        ->post('/clarkwinkelmann-group-list-items', 'clarkwinkelmann-group-list', Controllers\ItemStoreController::class)
-        ->patch('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list', Controllers\ItemUpdateController::class)
-        ->delete('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list', Controllers\ItemDeleteController::class),
+        ->get('/clarkwinkelmann-group-list', 'clarkwinkelmann-group-list.index', Controllers\GroupListController::class)
+        ->post('/clarkwinkelmann-group-list-items', 'clarkwinkelmann-group-list.create', Controllers\ItemStoreController::class)
+        ->patch('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list.update', Controllers\ItemUpdateController::class)
+        ->delete('/clarkwinkelmann-group-list-items/{id:[0-9]+}', 'clarkwinkelmann-group-list.delete', Controllers\ItemDeleteController::class),
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attributes(function (ForumSerializer $serializer): array {
             /**

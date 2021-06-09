@@ -7,6 +7,7 @@ use Flarum\Api\Serializer\AbstractSerializer;
 use Flarum\Api\Serializer\GroupSerializer;
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Formatter\Formatter;
+use Tobscure\JsonApi\Relationship;
 
 class GroupListItemSerializer extends AbstractSerializer
 {
@@ -16,7 +17,7 @@ class GroupListItemSerializer extends AbstractSerializer
      * @param GroupListItem $item
      * @return array
      */
-    protected function getDefaultAttributes($item)
+    protected function getDefaultAttributes($item): array
     {
         $attributes = [
             'content' => null,
@@ -36,12 +37,12 @@ class GroupListItemSerializer extends AbstractSerializer
         return $attributes;
     }
 
-    public function group($item)
+    public function group($item): ?Relationship
     {
         return $this->hasOne($item, GroupSerializer::class);
     }
 
-    public function members($item)
+    public function members($item): ?Relationship
     {
         return $this->hasMany($item, UserSerializer::class);
     }

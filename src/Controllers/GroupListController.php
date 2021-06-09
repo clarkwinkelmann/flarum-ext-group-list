@@ -5,6 +5,7 @@ namespace ClarkWinkelmann\GroupList\Controllers;
 use ClarkWinkelmann\GroupList\GroupListItem;
 use ClarkWinkelmann\GroupList\Serializers\GroupListItemSerializer;
 use Flarum\Api\Controller\AbstractListController;
+use Flarum\Http\RequestUtil;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -19,7 +20,7 @@ class GroupListController extends AbstractListController
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $request->getAttribute('actor')->assertCan('clarkwinkelmann-group-list.see');
+        RequestUtil::getActor($request)->assertCan('clarkwinkelmann-group-list.see');
 
         $items = GroupListItem::query()->orderBy('order')->get();
 

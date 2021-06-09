@@ -6,6 +6,7 @@ use ClarkWinkelmann\GroupList\GroupListItem;
 use ClarkWinkelmann\GroupList\Serializers\GroupListItemSerializer;
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Formatter\Formatter;
+use Flarum\Http\RequestUtil;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -20,7 +21,7 @@ class ItemUpdateController extends AbstractShowController
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $request->getAttribute('actor')->assertAdmin();
+        RequestUtil::getActor($request)->assertAdmin();
 
         $id = Arr::get($request->getQueryParams(), 'id');
 
